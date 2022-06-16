@@ -109,30 +109,29 @@ class BookmarkListView(generic.ListView):
 def signup(request):
     if request.method == 'POST':
         type = request.POST.get("type")
-        trigger = "$('.img__btn').trigger('click');"
         if type == 'signup':
             try:
                 if request.POST['id'] == '':
                     error = '아이디를 입력해주세요.'
-                    return render(request, 'GOHelp/signup.html', {'signup_error': error, 'trigger': trigger})
+                    return render(request, 'GOHelp/signup.html', {'signup_error': error})
                 if request.POST['pw1'] == '' or request.POST['pw2'] == '':
                     error = '비밀번호를 입력해주세요.'
-                    return render(request, 'GOHelp/signup.html', {'signup_error': error, 'trigger': trigger})
+                    return render(request, 'GOHelp/signup.html', {'signup_error': error})
                 if request.POST['email'] == '':
                     error = '이메일을 입력해주세요.'
-                    return render(request, 'GOHelp/signup.html', {'signup_error': error, 'trigger': trigger})
+                    return render(request, 'GOHelp/signup.html', {'signup_error': error})
                 if len(request.POST['id']) < 4:
                     error = '아이디는 4자 이상 입력해야합니다.'
-                    return render(request, 'GOHelp/signup.html', {'signup_error': error, 'trigger': trigger})
+                    return render(request, 'GOHelp/signup.html', {'signup_error': error})
                 if len(request.POST['pw1']) < 6:
                     error = '비밀번호는 6자 이상 입력해야합니다.'
-                    return render(request, 'GOHelp/signup.html', {'signup_error': error, 'trigger': trigger})
+                    return render(request, 'GOHelp/signup.html', {'signup_error': error})
                 if request.POST['pw1'] != request.POST['pw2']:
                     error = '비밀번호가 서로 일치하지 않습니다.'
-                    return render(request, 'GOHelp/signup.html', {'signup_error': error, 'trigger': trigger})
+                    return render(request, 'GOHelp/signup.html', {'signup_error': error})
                 if User.objects.filter(username=request.POST['id']).exists():
                     error = '이미 등록된 아이디입니다.'
-                    return render(request, 'GOHelp/signup.html', {'signup_error': error, 'trigger': trigger})
+                    return render(request, 'GOHelp/signup.html', {'signup_error': error})
                 user = User.objects.create_user(
                     username = request.POST['id'],
                     password = request.POST['pw1'],
