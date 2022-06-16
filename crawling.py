@@ -14,7 +14,7 @@ django.setup()
 
 from GOHelp.models import Bizinfo
 
-@sched.scheduled_job('cron', hour='8')
+@sched.scheduled_job('cron', hour='7', minute='11')
 @sched.scheduled_job('cron', hour='6')
 @sched.scheduled_job('cron', hour='18')
 def bizinfo_Crawaling():
