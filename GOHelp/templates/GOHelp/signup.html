@@ -1,0 +1,113 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+
+<div class="hero page-inner overlay" style="background-image: url({% static 'images/hero_bg_1.jpg' %});">
+		<div class="container">
+			<div class="row justify-content-center align-items-center">
+				<div class="col-lg-9 text-center mt-5">
+					<h1 class="heading" data-aos="fade-up">로그인</h1>
+
+					<nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="150">
+						<ol class="breadcrumb text-center justify-content-center">
+							<li class="breadcrumb-item "><a href="{% url 'index' %}">Home</a></li>
+							<li class="breadcrumb-item active text-white-50" aria-current="page">로그인</li>
+						</ol>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<div class="section bg-light">
+		<div class="container">
+<br>
+<br>
+    <div class="cont">
+		<form method="POST">
+		{% csrf_token %}
+        <div class="form sign-in">
+            <h2>로그인</h2>
+            <label>
+                <span>아이디</span>
+				<input name="id" type="text">
+            </label>
+            <label>
+                <span>비밀번호</span>
+                <input type="password" name="pw">
+            </label>
+            <p class="forgot-pass">{{ signin_error }}</p>
+            <input hidden name="type" value="signin">
+            <input type="submit" class="submit" value="Sign In">
+        </div>
+		</form>
+        <div class="sub-cont">
+            <div class="img">
+                <div class="img__text m--up">
+                    <h3>Don't have an account? Please Sign up!</h3>
+                </div>
+                <div class="img__text m--in">
+                    <h3>If you already has an account, just sign in.</h3>
+                </div>
+                <div class="img__btn">
+                    <span class="m--up">Sign Up</span>
+                    <span class="m--in">Sign In</span>
+                </div>
+
+		</div>
+			<form method="post">
+			{% csrf_token %}
+            <div class="form sign-up">
+                <h2>회원가입</h2>
+                <label>
+                    <span>아이디</span>
+                    <input name="id" type="text">
+                </label>
+				<label>
+                    <span>비밀번호</span>
+                    <input name="pw1" type="password">
+                </label>
+				<label>
+					<span>비밀번호 확인</span>
+                    <input name="pw2" type="password">
+                </label>
+				<label>
+                    <span>이메일</span>
+                    <input name="email" type="email">
+                </label>
+                <p class="forgot-pass">{{ signup_error }}</p>
+                <input hidden name="type" value="signup">
+                <input type="submit" class="submit" value="Sign Up">
+
+            </div>
+			</form>
+        </div>
+    </div>
+		</div>
+</div>
+
+<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+    $(function() {
+        $("input").focus(function() {
+            $(this).parent().find("span").attr("style", "font-weight: bold; color: black;");
+        });
+        $("input").focusout(function() {
+            $(this).parent().find("span").attr("style", "");
+        });
+
+        $('html, body').animate({
+		    scrollTop: $('.cont').offset().top
+	    }, 0);
+    });
+
+        document.querySelector('.img__btn').addEventListener('click', function() {
+            document.querySelector('.cont').classList.toggle('s--signup');
+        });
+
+        {{ trigger|safe }}
+    </script>
+
+
+{% endblock %}

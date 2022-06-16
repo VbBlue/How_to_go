@@ -1,0 +1,64 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+{% block content %}
+
+<div class="hero page-inner overlay" style="background-image: url({% static 'images/hero_bg_1.jpg' %});">
+		<div class="container">
+			<div class="row justify-content-center align-items-center">
+				<div class="col-lg-9 text-center mt-5">
+					<h1 class="heading" data-aos="fade-up">Detail</h1>
+
+					<nav aria-label="breadcrumb" data-aos="fade-up" data-aos-delay="150">
+						<ol class="breadcrumb text-center justify-content-center">
+							<li class="breadcrumb-item "><a href="{% url 'index' %}">Home</a></li>
+                            <li class="breadcrumb-item "><a href="{% url 'biz_list' %}">Services</a></li>
+							<li class="breadcrumb-item active text-white-50" aria-current="page">Detail</li>
+						</ol>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<div class="section bg-light">
+		<div class="container">
+<form class="row g-3" style="height:100%; margin:10px;">
+  <div class="col-12">
+      <div class="fw-bolder fs-3 " id="title" >{{ bizinfo.title }}</div>
+  </div>
+  <div class="col-12">
+    <label for="ministry" class="form-label">소관부처</label>
+      <div class="fw-bolder fs-4 rounded-1 p-3 mb-2 bg-white text-dark" id="ministry">{{ bizinfo.ministry }}</div>
+  </div>
+  <div class="col-12">
+    <label for="institution" class="form-label">수행기관</label>
+      <div class="fw-bolder fs-4 rounded-1 p-3 mb-2 bg-white text-dark" id="institution">{{ bizinfo.institution }}</div>
+  </div>
+  <div class="col-12">
+    <label for="period" class="form-label">신청기간</label>
+      <div class="fw-bolder fs-4 rounded-1 p-3 mb-2 bg-white text-dark" id="period">{{ bizinfo.period }}</div>
+  </div>
+  <div class="col-12">
+    <label class="form-label">사업개요</label>
+
+      <div class="rounded-1 p-3 mb-2 bg-white text-dark">
+      {% for text in summary %}
+        {% if text == outline %}
+            <div class="fw-bolder fs-5">{{ text }}</div>
+        {% else %}
+            <div class="fs-5"> - {{ text }}</div>
+        {% endif %}
+      {% endfor %}
+      </div>
+  </div>
+
+  <div class="col-2">
+    <a href="{{ bizinfo.link1 }}" class="btn btn-primary">기업마당</a>
+  </div>
+    <div class="col-2">
+    <a href="{{ bizinfo.link2 }}" class="btn btn-primary">공고출처</a>
+  </div>
+</form>
+        </div>
+</div>
+{% endblock %}

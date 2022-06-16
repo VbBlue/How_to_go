@@ -1,0 +1,27 @@
+{% extends 'base_generic.html' %}
+{% load static %}
+{% block content %}
+
+<div class="hero">
+
+
+		<div class="hero-slide">
+			<img class="img overlay" src="{% static 'images/hero_bg_1.jpg' %}">
+			<img class="img overlay" src="{% static 'images/hero_bg_2.jpg' %}">
+            <img class="img overlay" src="{% static 'images/hero_bg_3.jpg' %}">
+		</div>
+
+		<div class="container">
+			<div class="row justify-content-center align-items-center">
+				<div class="col-lg-9 text-center">
+					<h1 class="heading" data-aos="fade-up">지원사업 검색</h1>
+					<form action="{% url 'biz_list' %}" method="get" class="narrow-w form-search d-flex align-items-stretch mb-3" data-aos="fade-up" data-aos-delay="200">
+						<input type="text" name="search" class="form-control px-4" placeholder="지원사업명">
+						<input type="submit" class="btn btn-primary" value="Search">
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+{% endblock %}
