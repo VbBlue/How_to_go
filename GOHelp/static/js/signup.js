@@ -3,7 +3,6 @@
         });
 
     $(function() {
-        alert($(".form.sign-up").find(".forgot-pass").html().length)
         $("input").focus(function() {
             $(this).parent().find("span").attr("style", "font-weight: bold; color: black;");
         });
