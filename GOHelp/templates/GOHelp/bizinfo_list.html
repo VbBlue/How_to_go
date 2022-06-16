@@ -2,7 +2,14 @@
 
 {% load static %}
 {% block content %}
-
+<script type="text/javascript">
+	var token = "{{csrf_token}}";
+	var username = "{{ user.username }}";
+    var bookmark_in = "{% url 'bookmark_in' %}";
+    var bookmark_out = "{% url 'bookmark_out' %}";
+    var bookmark_fill = "{% static 'icons/bookmark_fill.png' %}";
+    var bookmark = "{% static 'icons/bookmark.png' %}";
+</script>
 <div class="hero page-inner overlay" style="background-image: url({% static 'images/hero_bg_1.jpg' %});">
 		<div class="container">
 			<div class="row justify-content-center align-items-center">
@@ -53,42 +60,7 @@
 	</div>
 
 
-<script src="http://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-  $(function() {
-  	$.ajaxSetup({
-    	headers: { "X-CSRFToken": '{{csrf_token}}' }
-  	});
-  	$("#biz_info").on("click", "#bmk", function() {
-  			id = $(this).parent().find("p").html();
-			username = "{{ user.username }}";
-			data = {
-				"id" : id,
-				"username" : username
-			};
-		if($(this).is(":checked")) {
-			$.ajax({
-				type : 'POST',
-				url : "{% url 'bookmark_in' %}",
-				data : JSON.stringify(data),
-			});
-			$(this).parent().attr("style", "content: url({% static 'icons/bookmark_fill.png' %});");
-		}else {
-			$.ajax({
-				type : 'POST',
-				url : "{% url 'bookmark_out' %}",
-				data : JSON.stringify(data),
-			});
-			$(this).parent().attr("style", "content: url({% static 'icons/bookmark.png' %});");
-		}
-	});
 
-	$('html, body').animate({
-		scrollTop: $('#biz_info').offset().top
-	}, 0);
-  });
-
-</script>
 {% endblock %}
 
 
