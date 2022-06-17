@@ -17,7 +17,7 @@ from datetime import datetime
 
 from GOHelp.models import Bizinfo
 
-@sched.scheduled_job('cron', hour='15', minute='0')
+@sched.scheduled_job('cron', hour='16', minute='3')
 @sched.scheduled_job('cron', hour='6')
 @sched.scheduled_job('cron', hour='18')
 def bizinfo_Crawaling():
