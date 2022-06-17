@@ -17,7 +17,7 @@ from datetime import datetime
 
 from GOHelp.models import Bizinfo
 
-@sched.scheduled_job('cron', hour='13', minute='5')
+@sched.scheduled_job('cron', hour='14', minute='0')
 @sched.scheduled_job('cron', hour='6')
 @sched.scheduled_job('cron', hour='18')
 def bizinfo_Crawaling():
@@ -80,5 +80,6 @@ def bizinfo_Crawaling():
                     link1=biz_info['biz_link1'],
                     link2=biz_info['biz_link2']
                     ).save()
+    print("end")
 
 sched.start()
