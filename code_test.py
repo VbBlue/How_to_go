@@ -1,3 +1,4 @@
+import requests
 from apscheduler.schedulers.blocking import BlockingScheduler
 
-print("test")
+requests.post("https://immense-brushlands-57771.herokuapp.com/GOHelp/").text
