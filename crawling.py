@@ -17,7 +17,7 @@ from datetime import datetime
 
 from GOHelp.models import Bizinfo
 
-@sched.scheduled_job('cron', hour='20', minute='41')
+@sched.scheduled_job('cron', hour='20', minute='48')
 @sched.scheduled_job('cron', hour='6')
 @sched.scheduled_job('cron', hour='18')
 def bizinfo_Crawaling():
@@ -68,8 +68,7 @@ def bizinfo_Crawaling():
             biz_info['biz_link2'] = ""
         biz_list.append(biz_info)
 
-        print(biz_list[0])
-
+    print(biz_list)
     # DB에 데이터 입력
     keys = [list(i.values())[0] for i in Bizinfo.objects.values('id')]
 
