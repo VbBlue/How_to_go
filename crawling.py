@@ -47,6 +47,8 @@ def bizinfo_Crawaling():
             link = "https://www.bizinfo.go.kr/web/lay1/bbs/S1T122C128/AS/74/" + href
             link_list.append(link)
 
+    requests.post("https://immense-brushlands-57771.herokuapp.com/GOHelp/", headers=headers).text
+
     #게시물에서 정보 크롤링
     biz_list = []
     for i in link_list:
@@ -65,6 +67,8 @@ def bizinfo_Crawaling():
         else:
             biz_info['biz_link2'] = ""
         biz_list.append(biz_info)
+
+    requests.post("https://immense-brushlands-57771.herokuapp.com/GOHelp/", headers=headers).text
 
     # DB에 데이터 입력
     keys = [list(i.values())[0] for i in Bizinfo.objects.values('id')]
