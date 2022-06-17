@@ -17,7 +17,7 @@ from datetime import datetime
 
 from GOHelp.models import Bizinfo
 
-@sched.scheduled_job('cron', hour='11', minute='40')
+@sched.scheduled_job('cron', hour='11', minute='45')
 @sched.scheduled_job('cron', hour='6')
 @sched.scheduled_job('cron', hour='18')
 def bizinfo_Crawaling():
@@ -26,7 +26,7 @@ def bizinfo_Crawaling():
     }
     url = 'https://www.bizinfo.go.kr/web/lay1/bbs/S1T122C128/AS/74/list.do'
     res = requests.get(url)
-    soup = bs4.BeautifulSoup(res.text, "html.pgiarser")
+    soup = bs4.BeautifulSoup(res.text, "html.parser")
     pages = soup.select("div.page_wrap > a")
     p = re.compile('cpage=[0-9]+')
 
