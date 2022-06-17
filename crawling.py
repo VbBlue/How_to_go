@@ -12,12 +12,13 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', "main.settings")
 import django
 django.setup()
 
+import time
 import zoneinfo
 from datetime import datetime
 
 from GOHelp.models import Bizinfo
 
-@sched.scheduled_job('cron', hour='20', minute='48')
+@sched.scheduled_job('cron', hour='20', minute='54')
 @sched.scheduled_job('cron', hour='6')
 @sched.scheduled_job('cron', hour='18')
 def bizinfo_Crawaling():
@@ -83,6 +84,7 @@ def bizinfo_Crawaling():
                     link1=biz_info['biz_link1'],
                     link2=biz_info['biz_link2']
                     ).save()
+        time.sleep(0.5)
     print("end")
 
 sched.start()
