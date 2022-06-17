@@ -65,6 +65,7 @@ def bizinfo_Crawaling():
         else:
             biz_info['biz_link2'] = ""
         biz_list.append(biz_info)
+    print(biz_list)
 
     # DB에 데이터 입력
     keys = [list(i.values())[0] for i in Bizinfo.objects.values('id')]
