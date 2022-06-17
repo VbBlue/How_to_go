@@ -4,7 +4,7 @@ import re
 
 from apscheduler.schedulers.blocking import BlockingScheduler
 
-sched = BlockingScheduler()
+sched = BlockingScheduler(timezone='Asia/Seoul')
 
 import os
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', "main.settings")
@@ -12,9 +12,12 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', "main.settings")
 import django
 django.setup()
 
+import zoneinfo
+from datetime import datetime
+
 from GOHelp.models import Bizinfo
 
-@sched.scheduled_job('cron', hour='7', minute='30')
+@sched.scheduled_job('cron', hour='11', minute='40')
 @sched.scheduled_job('cron', hour='6')
 @sched.scheduled_job('cron', hour='18')
 def bizinfo_Crawaling():
