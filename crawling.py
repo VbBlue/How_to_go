@@ -17,7 +17,7 @@ from datetime import datetime
 
 from GOHelp.models import Bizinfo
 
-@sched.scheduled_job('cron', hour='19', minute='50')
+@sched.scheduled_job('cron', hour='20', minute='41')
 @sched.scheduled_job('cron', hour='6')
 @sched.scheduled_job('cron', hour='18')
 def bizinfo_Crawaling():
@@ -37,7 +37,7 @@ def bizinfo_Crawaling():
     #게시물 링크 크롤링
     link_list = []
     urls = []
-    for i in range(1, lastPage + 1):
+    for i in range(1, 3):
         page_url = url + '?rows=15&cpage=' + str(i)
         res = requests.get(page_url)
         soup = bs4.BeautifulSoup(res.text, "html.parser")
@@ -67,6 +67,8 @@ def bizinfo_Crawaling():
         else:
             biz_info['biz_link2'] = ""
         biz_list.append(biz_info)
+
+        print(biz_list[0])
 
     # DB에 데이터 입력
     keys = [list(i.values())[0] for i in Bizinfo.objects.values('id')]
