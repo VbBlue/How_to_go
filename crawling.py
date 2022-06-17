@@ -12,13 +12,12 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', "main.settings")
 import django
 django.setup()
 
-import time
 import zoneinfo
 from datetime import datetime
 
 from GOHelp.models import Bizinfo
 
-@sched.scheduled_job('cron', hour='21', minute='6')
+@sched.scheduled_job('cron', hour='21', minute='20')
 @sched.scheduled_job('cron', hour='6')
 @sched.scheduled_job('cron', hour='18')
 def bizinfo_Crawaling():
@@ -38,7 +37,7 @@ def bizinfo_Crawaling():
     #게시물 링크 크롤링
     link_list = []
     urls = []
-    for i in range(1, 3):
+    for i in range(1, lastPage + 1):
         page_url = url + '?rows=15&cpage=' + str(i)
         res = requests.get(page_url)
         soup = bs4.BeautifulSoup(res.text, "html.parser")
@@ -74,7 +73,6 @@ def bizinfo_Crawaling():
 
     for biz_info in biz_list:
         if biz_info['biz_id'] not in keys:
-            print(biz_info)
             Bizinfo(id=biz_info['biz_id'],
                     title=biz_info['biz_title'],
                     ministry=biz_info['biz_ministry'],
@@ -84,7 +82,6 @@ def bizinfo_Crawaling():
                     link1=biz_info['biz_link1'],
                     link2=biz_info['biz_link2']
                     ).save()
-        time.sleep(0.5)
     print("end")
 
 sched.start()

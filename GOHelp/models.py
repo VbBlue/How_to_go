@@ -12,8 +12,8 @@ class Bizinfo(models.Model):
     institution = models.CharField(max_length=200)
     period = models.CharField(max_length=200)
     summary = models.TextField(max_length=2000)
-    link1 = models.CharField(max_length=200)
-    link2 = models.CharField(max_length=200, null=True, blank=True)
+    link1 = models.TextField(max_length=2000)
+    link2 = models.TextField(max_length=2000, null=True, blank=True)
     registration_date = models.DateField(auto_now_add=True)
 
 
