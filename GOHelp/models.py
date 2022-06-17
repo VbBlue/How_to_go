@@ -6,11 +6,11 @@ from django.contrib.auth.models import User
 
 # bizinfo에서 크롤링한 사업정보 모델
 class Bizinfo(models.Model):
-    id = models.CharField(max_length=50, primary_key=True)
+    id = models.CharField(max_length=200, primary_key=True)
     title = models.CharField(max_length=200)
-    ministry = models.CharField(max_length=50)
-    institution = models.CharField(max_length=50)
-    period = models.CharField(max_length=50)
+    ministry = models.CharField(max_length=200)
+    institution = models.CharField(max_length=200)
+    period = models.CharField(max_length=200)
     summary = models.TextField(max_length=2000)
     link1 = models.CharField(max_length=200)
     link2 = models.CharField(max_length=200, null=True, blank=True)
