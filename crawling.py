@@ -18,7 +18,7 @@ from datetime import datetime
 
 from GOHelp.models import Bizinfo
 
-@sched.scheduled_job('cron', hour='21', minute='0')
+@sched.scheduled_job('cron', hour='21', minute='6')
 @sched.scheduled_job('cron', hour='6')
 @sched.scheduled_job('cron', hour='18')
 def bizinfo_Crawaling():
@@ -74,7 +74,7 @@ def bizinfo_Crawaling():
 
     for biz_info in biz_list:
         if biz_info['biz_id'] not in keys:
-            print(biz_info['biz_id'])
+            print(biz_info)
             Bizinfo(id=biz_info['biz_id'],
                     title=biz_info['biz_title'],
                     ministry=biz_info['biz_ministry'],
