@@ -10332,7 +10332,16 @@ ul.pagination {
     align-items: center;
 }
 
+.menu-splitL {
+    display: none;
+}
+
 @media (max-width: 991px) {
+
+.menu-splitL {
+    display: block;
+}
+
 .m_hide {
     display: none;
 }
@@ -10451,10 +10460,11 @@ div.menu-bg.animate{
 
 }
 div.menu {
-	height: 568px;
+	height: 0px;
 	width: 160px;
 }
 .menu-splitL, .menu-splitR{
+    padding:0;
 	overflow:hidden;
 	position: absolute;
 	top: 90px;
@@ -10464,7 +10474,7 @@ div.menu {
 
 div.menu ul li {
 	list-style: none;
-	width:320px;
+	width:100%;
 	margin-top:40px;
 	text-align:center;
 	font-size:19px;
