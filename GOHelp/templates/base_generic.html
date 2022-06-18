@@ -31,7 +31,6 @@
     <title>정부지원사업</title>
 </head>
 <body>
-
       <div class="site-mobile-menu site-navbar-target">
 		<div class="site-mobile-menu-header">
 			<div class="site-mobile-menu-close">
@@ -45,6 +44,12 @@
 			<div class="menu-bg-wrap">
 				<div class="site-navigation">
 					<a href="{% url 'index' %}" class="logo m-0 float-start">정부지원사업</a>
+
+					<div class="burger">
+						<div class="x"></div>
+						<div class="y"></div>
+						<div class="z"></div>
+					</div>
 
 					<ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
 						<li class="active"><a href="{% url 'index' %}">Home</a></li>
@@ -64,9 +69,25 @@
 
 
 
-
+<div class="screen">
       {% block content %}{% endblock %}
+	<div class="menu-bg"></div>
+			<div class="menu">
+                <ul class="menu-splitL">
+						<li class="active"><a href="{% url 'index' %}">Home</a></li>
+						<li><a href="{% url 'biz_list' %}">지원사업</a></li>
+						{% if user.is_authenticated %}
+							<li><a href="{% url 'bmk_list' %}">즐겨찾기</a></li>
+							<li><a href="{% url 'logout' %}">로그아웃</a></li>
 
+						{% else %}
+							<li><a href="{% url 'signup' %}">로그인</a></li>
+						{% endif %}
+				</ul>
+
+			</div>
+
+</div>
 {% block pagination %}
   {% if is_paginated %}
 	  <div class="section bg-light">
@@ -103,5 +124,68 @@
     <script src="{% static 'js/custom.js' %}"></script>
 	<script src="{% static 'js/biz_list.js' %}"></script>
 	<script src="{% static 'js/signup.js' %}"></script>
+<script>
+	if( 'ontouchstart' in window ){ var click = 'touchstart'; }
+	else { var click = 'click'; }
+
+
+	$('div.burger').on(click, function(){
+			if( !$(this).hasClass('open') ){ openMenu(); }
+			else { closeMenu(); }
+	});
+
+
+	$('div.menu ul li a').on(click, function(e){
+		e.preventDefault();
+		closeMenu();
+	});
+
+
+	function openMenu(){
+		$('.logo').addClass('m_hide');
+		$('.menu-bg-wrap').addClass('m_trans');
+		$('h1').addClass('m_hide');
+		$('input').addClass('m_hide');
+		$('div.menu-bg').addClass('animate');
+
+		$('div.burger').addClass('open');
+		$('.menu li').addClass('animate');
+
+		setTimeout(function(){
+			$('div.y').hide();
+			$('div.x').addClass('rotate30');
+			$('div.z').addClass('rotate150');
+		}, 70);
+		setTimeout(function(){
+			$('div.x').addClass('rotate45');
+			$('div.z').addClass('rotate135');
+		}, 120);
+	}
+
+	function closeMenu(){
+
+		$('.menu li').removeClass('animate');
+		setTimeout(function(){
+			$('div.burger').removeClass('open');
+			$('div.x').removeClass('rotate45').addClass('rotate30');
+			$('div.z').removeClass('rotate135').addClass('rotate150');
+			$('div.menu-bg').removeClass('animate');
+			$('.logo').removeClass('m_hide');
+			$('.menu-bg-wrap').removeClass('m_trans');
+			$('h1').removeClass('m_hide');
+			$('input').removeClass('m_hide');
+
+			setTimeout(function(){
+				$('div.x').removeClass('rotate30');
+				$('div.z').removeClass('rotate150');
+			}, 50);
+			setTimeout(function(){
+				$('div.y').show();
+				$('div.x, div.z').removeClass('collapse');
+			}, 70);
+		}, 100);
+
+	}
+</script>
 </body>
 </html>
