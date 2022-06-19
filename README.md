@@ -8,6 +8,6 @@
 
 사용 툴: Django / SQLite3 를 사용해 제작했으며 Heroku 서버에 배포
 
-주소: 
+주소: https://immense-brushlands-57771.herokuapp.com/
 
 기능: 로그인 / 회원가입 / 즐겨찾기 기능 구현
